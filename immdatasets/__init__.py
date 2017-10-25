@@ -31,15 +31,15 @@ class DataResponse():
 
 
 def get_data(key):
-    rresponse = requests.get("https://data.immstudios.org/{}.json".format(key))
-    if rresponse.status_code != 200:
+    response = requests.get("https://data.immstudios.org/{}.json".format(key))
+    if response.status_code != 200:
         return DataResponse(
-                response=rresponse.status_code,
+                response=response.status_code,
                 time=time.time(),
                 data={}
             )
     try:
-        result_data = json.loads(rresponse.text)
+        result_data = json.loads(response.text)
     except Exception:
         return DataResponse(
                 response=500,
